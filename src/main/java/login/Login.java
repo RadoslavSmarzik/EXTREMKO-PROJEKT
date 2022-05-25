@@ -40,10 +40,10 @@ public class Login {
         Person user = query.getUser(login, password);
 
         if(!isSuccessfullyLoggedIn(user)){
-            System.out.println("UNSUCCESSFULLY LOGGED IN");
+            System.out.println("Nepodarilo sa prihlasit.");
             return;
         }
-        System.out.println(user.getFullName() + " IS LOGGED SUCCESSFULLY");
+        System.out.println(user.getFullName() + " - uspesne prihlaseny");
     }
 
     public boolean isSuccessfullyLoggedIn(Person person){

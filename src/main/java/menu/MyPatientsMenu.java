@@ -31,7 +31,7 @@ public class MyPatientsMenu extends Menu {
     @Override
     public void handle(String option) throws SQLException {
         if (loggedUser == null) {
-            System.out.println("NOBODY IS LOGGED");
+            System.out.println("Nikto nie je prihlaseny.");
             return;
         }
         if (Integer.parseInt(option) > 0 && Integer.parseInt(option) <= patients.size()) {
@@ -44,6 +44,6 @@ public class MyPatientsMenu extends Menu {
             return;
         }
 
-        System.out.println("INCORRECT COMMAND");
+        System.out.println("Neznamy prikaz.");
     }
 }

@@ -2,7 +2,6 @@ package menu;
 
 import models.Person;
 import queries.Query;
-
 import java.sql.SQLException;
 import java.util.Scanner;
 
