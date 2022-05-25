@@ -17,7 +17,4 @@ public class Disease {
         return name;
     }
 
-    public String getInformation(){
-        return getName();
-    }
 }
