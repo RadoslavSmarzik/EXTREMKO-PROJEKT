@@ -33,7 +33,7 @@ public class Person {
         if(surname == null){
             surname = "";
         }
-        return (name + " " + surname).strip();
+        return (name.strip() + " " + surname.strip()).strip();
     }
 
 
@@ -41,11 +41,11 @@ public class Person {
         if(address == null){
             return "";
         }
-        return address.strip();
+        return address;
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address.strip();
     }
 
     public Date getBirthday() {
@@ -64,7 +64,7 @@ public class Person {
     }
 
     public void setCity(String city) {
-        this.city = city;
+        this.city = city.strip();
     }
 
     public void setId(int id) {
@@ -72,11 +72,14 @@ public class Person {
     }
 
     public String getInformation() {
+        if(this.information == null){
+            return "";
+        }
         return information;
     }
 
     public void setInformation(String information) {
-        this.information = information;
+        this.information = information.strip();
     }
 
     public void setDoctor(boolean doctor) {
@@ -92,11 +95,14 @@ public class Person {
     }
 
     public String getName() {
+        if(this.name == null){
+            return "";
+        }
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.strip();
     }
 
     public String getPassword() {
@@ -108,10 +114,11 @@ public class Person {
     }
 
     public String getSurname() {
+        if(this.surname == null){
+            return "";
+        }
         return surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
+    public void setSurname(String surname) { this.surname = surname.strip(); }
 }

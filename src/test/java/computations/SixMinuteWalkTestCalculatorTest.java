@@ -42,7 +42,4 @@ class SixMinuteWalkTestCalculatorTest {
 
     }
 
-    @Test
-    void getResultsInterpretation() {
-    }
 }

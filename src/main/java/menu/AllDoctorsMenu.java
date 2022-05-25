@@ -44,7 +44,7 @@ public class AllDoctorsMenu extends Menu {
             return;
         }
 
-        System.out.println("INCORRECT COMMAND");
+        System.out.println("Neznamy prikaz");
 
     }
 }
