@@ -14,7 +14,7 @@ public class DoctorInfoMenu extends Menu{
     }
 
     @Override
-    public void print() throws SQLException {
+    public void print() {
         System.out.println("*******************************");
         System.out.println("* 1. Zobraz voľné termíny");
         System.out.println("* 2. Informácie o doktorovi");
@@ -46,6 +46,6 @@ public class DoctorInfoMenu extends Menu{
             return;
         }
 
-        System.out.println("INCORRECT COMMAND");
+        System.out.println("Neznamy prikaz.");
     }
 }

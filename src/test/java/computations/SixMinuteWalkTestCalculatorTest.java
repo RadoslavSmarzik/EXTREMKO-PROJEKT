@@ -16,6 +16,13 @@ class SixMinuteWalkTestCalculatorTest {
         testForm.setAge(72);
         testForm.setWeight(80);
         testForm.setWoman(false);
+        testForm.setBloodPressureTreatment(false);
+        testForm.setSystolicBloodPressure(50);
+        testForm.setTotalCholesterol(193.35);
+        testForm.setHDLCholesterol(1);
+        testForm.setSmoker(true);
+        testForm.setStrokeVolume(70);
+        testForm.setHeartRate(80);
 
         assertEquals(528, calculator.getResult(testForm));
 

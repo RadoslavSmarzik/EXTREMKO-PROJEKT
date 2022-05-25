@@ -48,7 +48,6 @@ public class DiseaseMenu extends Menu{
             exit();
             return;
         }
-
         if(diseases != null && Integer.parseInt(option) > 0 && Integer.parseInt(option) <= this.diseases.size()){
             System.out.println("Zadajte liečbu");
             Scanner s = new Scanner(System.in);

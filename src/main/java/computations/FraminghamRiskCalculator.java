@@ -10,13 +10,31 @@ public class FraminghamRiskCalculator implements Computation {
 
     private double bpTreatment;
     private double smoker;
+    private String NOT_FILLED_FORM = "Nastala chyba, dotazník nie je vyplnený!";
+
+    private boolean isFormCorrect(Form form) throws InvalidParameterException {
+        if(form == null || !form.isFilled()){
+            throw new InvalidParameterException(NOT_FILLED_FORM);
+        }
+        return true;
+    }
+
+    private void setBooleanValues(Form form){
+        bpTreatment = getDouble(form.isBloodPressureTreatment());
+        smoker = getDouble(form.isSmoker());
+    }
 
 
     @Override
     public double getResult(Form form) throws InvalidParameterException {
+
         double riskScore;
-        bpTreatment = getDouble(form.isBloodPressureTreatment());
-        smoker = getDouble(form.isSmoker());
+
+        try{
+            isFormCorrect(form);
+        } catch (InvalidParameterException e){
+            throw e;
+        }
 
         if(form.isWoman()){
             riskScore = getRiskScoreForWoman(form);
@@ -29,16 +47,27 @@ public class FraminghamRiskCalculator implements Computation {
 
     @Override
     public String getResultsInterpretation(double result) {
+        if(result < 0 || result > 100){
+            return "Mimo intervalu hodnot (0 - 100%).";
+        }
         if(result < 10){
-            return "Riziko kardiovaskularneho ochorenia na najblizsich 10 rokov je nizke - " + result;
+            return "Riziko kardiovaskularneho ochorenia na najblizsich 10 rokov je nizke - " + result + "%.";
         }
         if(result < 19){
-            return "Riziko kardiovaskularneho ochorenia na najblizsich 10 rokov je mierne - " + result;
+            return "Riziko kardiovaskularneho ochorenia na najblizsich 10 rokov je mierne - " + result + "%.";
         }
-        return "Riziko kardiovaskularneho ochorenia na najblizsich 10 rokov je vysoke - " + result;
+        return "Riziko kardiovaskularneho ochorenia na najblizsich 10 rokov je vysoke - " + result + "%.";
     }
 
-    private double getRiskScoreForMan(Form form){
+    public double getRiskScoreForMan(Form form){
+        try{
+            isFormCorrect(form);
+        } catch (InvalidParameterException e){
+            throw e;
+        }
+
+        setBooleanValues(form);
+
         double age = getLogProduct(FraminghamConst.ageM, form.getAge());
         double cholesterol = getLogProduct(FraminghamConst.totalCholesterolM, form.getTotalCholesterol());
         double hdl = getLogProduct(FraminghamConst.HDLCholesterolM, form.getHDLCholesterol());
@@ -56,8 +85,13 @@ public class FraminghamRiskCalculator implements Computation {
     }
 
     public double getRiskScoreForWoman(Form form){
-        bpTreatment = getDouble(form.isBloodPressureTreatment());
-        smoker = getDouble(form.isSmoker());
+        try{
+            isFormCorrect(form);
+        } catch (InvalidParameterException e){
+            throw e;
+        }
+
+        setBooleanValues(form);
 
         double age = getLogProduct(FraminghamConst.ageW, form.getAge());
         double cholesterol = getLogProduct(FraminghamConst.totalCholesterolW, form.getTotalCholesterol());

@@ -34,15 +34,23 @@ public class Appointment {
         if(date == null || time == null){
             return "";
         }
-        if(doctor != null && patient != null){
+        if(hasDoctorName() && hasPatientName()){
             return date + " " + time + " " + patient.getFullName() + " s " + doctor.getFullName();
-        } else if(doctor != null){
+        } else if(hasDoctorName()){
             return date + " " + time + " " + doctor.getFullName();
-        } else if(patient != null){
+        } else if(hasPatientName()){
             return date + " " + time + " " + patient.getFullName();
         } else {
-            return date + " " + time + " ";
+            return date + " " + time;
         }
+    }
+
+    private boolean hasPatientName(){
+        return patient != null && !patient.getFullName().equals("");
+    }
+
+    private boolean hasDoctorName(){
+        return doctor != null && !doctor.getFullName().equals("");
     }
 
 

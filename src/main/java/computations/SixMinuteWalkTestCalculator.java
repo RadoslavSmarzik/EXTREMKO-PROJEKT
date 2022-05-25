@@ -19,9 +19,16 @@ public class SixMinuteWalkTestCalculator implements Computation {
 
     private double WOMEN_LOWER_SHIFT= 139;
 
+    private String NOT_FILLED_FORM = "Nastala chyba, dotazník nie je vyplnený!";
+
 
     @Override
     public double getResult(Form form) throws InvalidParameterException {
+
+        if (!form.isFilled()) {
+            throw new InvalidParameterException(NOT_FILLED_FORM);
+        }
+
         if(form.isWoman()){
             return calculateResultWoman(form.getHeight(), form.getAge(), form.getWeight());
         }

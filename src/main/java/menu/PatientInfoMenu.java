@@ -26,10 +26,16 @@ public class PatientInfoMenu extends Menu{
 
     @Override
     public void handle(String option) throws SQLException {
+
         if(loggedUser == null){
-            System.out.println("NOBODY IS LOGGED");
+            System.out.println("Nikto nie je prihlaseny.");
             return;
         }
+
+        if(option == null || query == null){
+            return;
+        }
+
         if(Integer.parseInt(option) == 1){
             DiseaseMenu menu = new DiseaseMenu(query, loggedUser, patientId);
             menu.run();
@@ -53,6 +59,6 @@ public class PatientInfoMenu extends Menu{
             return;
         }
 
-        System.out.println("INCORRECT COMMAND");
+        System.out.println("Neznamy prikaz.");
     }
 }
