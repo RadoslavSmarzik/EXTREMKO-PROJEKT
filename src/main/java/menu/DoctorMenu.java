@@ -38,7 +38,9 @@ public class DoctorMenu extends Menu {
     public void handle(String option) throws SQLException {
 
         if(loggedUser == null){
+
             System.out.println("Nikto nie je prihlaseny.");
+            
             return;
         }
 

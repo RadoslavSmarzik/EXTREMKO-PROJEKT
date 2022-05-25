@@ -76,7 +76,7 @@ public class Query {
             person.setName(resultSet.getString("name"));
             person.setPassword(resultSet.getString("password"));
             person.setSurname(resultSet.getString("surname"));
-            return new Person();
+            return person;
         }
     }
 

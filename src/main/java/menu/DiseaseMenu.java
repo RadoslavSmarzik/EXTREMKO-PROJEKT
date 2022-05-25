@@ -36,21 +36,36 @@ public class DiseaseMenu extends Menu{
     @Override
     public void handle(String option) throws SQLException {
         if(loggedUser == null){
-            System.out.println("Nikto nie je prihlaseny.");
+            System.out.println("Nikto nie je prihlaseny");
             return;
         }
-        if(Integer.parseInt(option) > 0 && Integer.parseInt(option) <= this.diseases.size()){
+        if(option == null || !stringIsNumber(option)){
+            System.out.println("Prikaz musi byt cislo");
+            return;
+        }
+
+        if(Integer.parseInt(option) == 0){
+            exit();
+            return;
+        }
+        if(diseases != null && Integer.parseInt(option) > 0 && Integer.parseInt(option) <= this.diseases.size()){
             System.out.println("Zadajte liečbu");
             Scanner s = new Scanner(System.in);
             String treatment = s.nextLine();
             query.addPatientDisease(patientId,diseases.get(Integer.parseInt(option)-1).getId(), treatment);
             return;
         }
-        if(Integer.parseInt(option) == 0){
-            exit();
-            return;
-        }
 
-        System.out.println("Neznamy prikaz.");
+        System.out.println("Neznamy prikaz");
     }
+
+    public boolean stringIsNumber(String string){
+        try{
+            Integer.parseInt(string);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 }

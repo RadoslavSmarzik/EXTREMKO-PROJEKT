@@ -43,16 +43,16 @@ public class Diagnosis {
     }
 
     public void setTreatment(String treatment) {
-        this.treatment = treatment;
+        this.treatment = treatment.strip();
     }
 
     public String getInformation(){
-        if(disease == null || disease.getName().equals("")){
+        if(disease == null || disease.getName() == null || disease.getName().strip().equals("")){
             return "";
         }
         if(treatment == null || treatment.strip().equals("")){
-            return getDisease().getName();
+            return getDisease().getName().strip();
         }
-        return getDisease().getName() + ", treatment: " + getTreatment();
+        return getDisease().getName().strip() + ", liečba: " + getTreatment().strip();
     }
 }
