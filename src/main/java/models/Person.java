@@ -72,6 +72,9 @@ public class Person {
     }
 
     public String getInformation() {
+        if(this.information == null){
+            return "";
+        }
         return information;
     }
 
@@ -92,6 +95,9 @@ public class Person {
     }
 
     public String getName() {
+        if(this.name == null){
+            return "";
+        }
         return name;
     }
 
@@ -108,6 +114,9 @@ public class Person {
     }
 
     public String getSurname() {
+        if(this.surname == null){
+            return "";
+        }
         return surname;
     }
 
